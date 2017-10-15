@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <title>S3 POST Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <h4>Please upload the here.</h4>
+    <form action="https://bucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data" id="form1" >
+      <input type="hidden" name="key" value="uploads/${filename}">
+      <input type="hidden" name="AWSAccessKeyId" value="ADD_YOUR_AWS_ACCESS_KEY_HERE">
+      <input type="hidden" name="acl" value="private">
+      <input type="hidden" name="policy" value="ADD_YOUR_POLICY_HERE">
+      <input type="hidden" name="signature" value="ADD_YOUR_SIGNATRE_HERE=">
+      <input name="file" type="file" id="upload1">
+    </form>
+
+    <br>
+
+    <h4>Please upload the file here.</h4>
+    <form action="https://bucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data" id="form2">
+      <input type="hidden" name="key" value="uploads/${filename}">
+      <input type="hidden" name="AWSAccessKeyId" value="ADD_YOUR_AWS_ACCESS_KEY_HERE">
+      <input type="hidden" name="acl" value="private">
+      <input type="hidden" name="policy" value="ADD_YOUR_POLICY_HERE">
+      <input type="hidden" name="signature" value="ADD_YOUR_SIGNATRE_HERE=">
+      <input name="file" type="file" id="upload2">
+    </form>
+
+    <br>
+
+    <h4>Please upload the file here.</h4>
+    <form action="https://bucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data" id="form3">
+      <input type="hidden" name="key" value="uploads/${filename}">
+      <input type="hidden" name="AWSAccessKeyId" value="ADD_YOUR_AWS_ACCESS_KEY_HERE">
+      <input type="hidden" name="acl" value="private">
+      <input type="hidden" name="policy" value="ADD_YOUR_POLICY_HERE">
+      <input type="hidden" name="signature" value="ADD_YOUR_SIGNATRE_HERE=">
+      <input name="file" type="file" id="upload3">
+    </form>
+
+
+    <script type="text/javascript">
+    // override standard upload functionality with ajax upload for the first form
+    $("#form1").submit(function(e) {
+      var formobj = $(this);
+      var formurl = formobj.attr("action");
+      var formdata = new FormData(this);
+      $.ajax({
+        url: formurl,
+        type: "POST",
+        data: formdata,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data, textStatus, jqXHR) {
+          console.log("success");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log("error");
+          console.log(jqXHR);
+          console.log(textStatus);
+          console.log(errorThrown);
+        }
+      });
+      e.preventDefault();
+    });
+
+    // override standard upload functionality with ajax upload for the second form
+    $("#form2").submit(function(e) {
+      var formobj = $(this);
+      var formurl = formobj.attr("action");
+      var formdata = new FormData(this);
+      $.ajax({
+        url: formurl,
+        type: "POST",
+        data: formdata,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data, textStatus, jqXHR) {
+          console.log("success");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log("error");
+          console.log(jqXHR);
+          console.log(textStatus);
+          console.log(errorThrown);
+        }
+      });
+      e.preventDefault();
+    });
+    // override standard upload functionality with ajax upload for the second form
+    $("#form3").submit(function(e) {
+      var formobj = $(this);
+      var formurl = formobj.attr("action");
+      var formdata = new FormData(this);
+      $.ajax({
+        url: formurl,
+        type: "POST",
+        data: formdata,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data, textStatus, jqXHR) {
+          console.log("success");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log("error");
+          console.log(jqXHR);
+          console.log(textStatus);
+          console.log(errorThrown);
+        }
+      });
+      e.preventDefault();
+    });
+
+    // Automatically upload the files to s3 when a file is choosen
+    $('#upload1').on('change', function(){
+      $(this).submit();
+    });
+    $('#upload2').on('change', function(){
+      $(this).submit();
+    });
+    $('#upload3').on('change', function(){
+      $(this).submit();
+    });
+
+
+  </script>
+  </body>
+</html>
